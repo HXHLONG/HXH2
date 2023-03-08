@@ -111,3 +111,50 @@ g.draw();
 // ctx.fillStyle = '#fff'; //填充颜色
 // ctx.fill(); //绘画 填充
 
+
+ // ---- 座右铭字缓出效果 -----
+	var motto = [
+		"醉后不知天在水，满船清梦压星河。",
+		"一梦入混沌，明月撞星辰。",
+        "明天不一定会更好，但要坚信更好的明天一定会来。",
+        "要做的事情总找得出时间和机会，不愿意做的事情也总能找得出借口。",
+        "Gor For It!",
+        "那些过去的眼泪终将风干在记忆里。",
+        "我欲将心向明月，奈何明月照沟渠。",
+        "春风得意马蹄疾，一日看尽长安花。",
+        "蒹葭苍苍，白露为霜；所谓伊人，在水一方。"
+    ];
+    var text = "衣带渐宽终不悔，为伊消得人憔悴。";
+    var length = text.length;
+    let index = 0;
+    var e1 = setInterval(insWords, 150);
+    var e2 = 0;
+	
+    function insWords() {
+        if (index <= length + 1 && index >= 0) {
+            $("#zuoyouming").append(text[index]);
+        }
+        index++;
+        if (index > length) {
+            index += 58;
+            e2 = setInterval(delWords, 50);
+            clearInterval(e1);
+        }
+    }
+
+    function delWords() {
+        if (index <= length && index >= 0) {
+            let shower = text.substr(0, index);
+            $("#zuoyouming").html(shower);
+        }
+        index--;
+        if (index < 0) {
+            index = -5;
+            let i = Math.floor(motto.length * Math.random());
+            text = motto[i];
+            length = text.length;
+            e1 = setInterval(insWords, 150);
+            clearInterval(e2);
+        }
+
+    }
