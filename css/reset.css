@@ -1,0 +1,81 @@
+@charset "utf-8";
+
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd,input,textarea,button {
+	margin : 0;
+	padding: 0;
+	/* 去掉默认的内外间距 */
+}
+
+html {
+	font : 12px/2 "微软雅黑";
+	/* 设置文字大小12px 行高2倍24px 字体是微软雅黑 */
+	color: #333;
+
+}
+
+a {
+	text-decoration: none;
+	/* 删除下划线 */
+	color          : inherit;
+	/* 让a标签继承父元素的颜色 */
+}
+
+li {
+	list-style: none;
+	/* 去掉列表样式 */
+}
+
+/* 群组选择器  并列 */
+h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+	/* 不加粗 */
+}
+
+/* *单行省略*/
+.sl {
+	/* 超出出现省略号：三行代码实现 */
+	/* 超出隐藏 */
+	white-space  : nowrap;
+	/* 文本不换行 */
+	overflow     : hidden;
+	/* 文本超出出现省略号 */
+	text-overflow: ellipsis;
+}
+
+img {
+	vertical-align  : top;
+	border          : 0;
+	/*vertical-align: top/middle/bottom;*/
+}
+
+
+/* textarea {
+	resize: none;
+}
+
+input,textarea,button,select {
+	outline    : none;
+	color      : inherit;
+	font-size  : inherit;
+	font-family: inherit;
+	border     : none;
+}
+
+input[type="button"],input[type="submit"],input[type="reset"] {
+	cursor: pointer;
+} */
+
+
+/* 万能清除法
+.cl:after {
+	content   : "";
+	display   : block;
+	clear     : both;
+	height    : 0;
+	overflow  : hidden;
+	visibility: hidden;
+}
+
+.cl {
+	zoom: 1;
+} */

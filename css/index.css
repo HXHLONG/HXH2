@@ -1,0 +1,38 @@
+* {
+	padding: 0;
+	margin: 0;
+	--widimg: 1260/7;
+	box-sizing: border-box;
+}
+/* /* 时间 */ */
+canvas{
+	background: radial-gradient(#fff,#8c738c);
+	display: block;
+}
+
+
+/* 跑步小孩 */
+.rbimgs {
+	--widimg: 1260/7;
+	position: fixed;
+	bottom: -100px;
+	right: -50px;
+	/* background-color: #008000; */
+	width: calc(var(--widimg) * 1px);
+	height: 300px;
+	background-image: url(../images/xnvhai.png);
+	background-repeat: no-repeat;
+	animation: nvhimg 1s steps(7) infinite;
+	transform: scale(0.4);
+}
+@keyframes nvhimg {
+	0% {
+		background-position-x: 0px;
+	}
+
+	100% {
+		background-position-x: -1260px;
+	}
+
+
+}
