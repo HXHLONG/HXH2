@@ -1,15 +1,17 @@
 * {
 	padding: 0;
 	margin: 0;
-	--widimg: 1260/7;
-	box-sizing: border-box;
-}
-/* /* 时间 */ */
-canvas{
-	background: radial-gradient(#fff,#8c738c);
-	display: block;
 }
 
+/*  时间 */
+canvas {
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: #222;
+	width: 100%;
+	height: 100%;
+}
 
 /* 跑步小孩 */
 .rbimgs {
@@ -25,6 +27,7 @@ canvas{
 	animation: nvhimg 1s steps(7) infinite;
 	transform: scale(0.4);
 }
+
 @keyframes nvhimg {
 	0% {
 		background-position-x: 0px;
