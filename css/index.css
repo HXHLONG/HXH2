@@ -1,12 +1,10 @@
-*{
+* {
 	padding: 0;
 	margin: 0;
 }
-body{
-	background: #222;
-}
+
 /*  时间 */
-canvas{
+canvas {
 	position: fixed;
 	left: 0;
 	top: 0;
@@ -15,8 +13,44 @@ canvas{
 	height: 100%;
 }
 
+#zuoyouming {
+	position: fixed;
+	left: 40%;
+	top: 28%;
+	z-index: 88;
+	width: 480px;
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+	color: rgb(200, 200, 200);
+	font-weight: 800;
+}
+
+#zuoyouming::after {
+	content: "";
+	position: relative;
+	top: 3px;
+	display: inline-block;
+	height: 18px;
+	margin-left: 5px;
+	border: 1px solid #fff;
+	animation: textshan  1s  steps(2) infinite ;
+}
+@keyframes textshan {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+
+
+}
+
+
 /* 跑步小孩 */
-.rbimgs{
+.rbimgs {
 	--widimg: 1260/7;
 	position: fixed;
 	bottom: -100px;
