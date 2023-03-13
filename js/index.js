@@ -1,10 +1,10 @@
-const cvs = document.querySelector('canvas');
-const ctx = cvs.getContext('2d');
+const beijincvs = document.getElementById('beijcanvas');
+const beijinctx = beijincvs.getContext('2d');
 const rbimgs = document.getElementsByClassName('rbimgs')[0];
 function init(){
 	//缩放倍率 devicePixelRatio
-	cvs.width = window.innerWidth * devicePixelRatio;
-	cvs.height = window.innerHeight * devicePixelRatio;
+	beijincvs.width = window.innerWidth * devicePixelRatio;
+	beijincvs.height = window.innerHeight * devicePixelRatio;
 }
 init();
 
@@ -19,8 +19,8 @@ init();
 class Point{
 	constructor(arg) {
 		this.r = 4;
-		this.x = getRandom(0,cvs.width-this.r/2);
-		this.y = getRandom(0,cvs.height-this.r/2);
+		this.x = getRandom(0,beijincvs.width-this.r/2);
+		this.y = getRandom(0,beijincvs.height-this.r/2);
 		this.xSpeed = getRandom(-48,48);//速度x轴
 		this.ySpeed = getRandom(-48,48);//速度y轴
 		this.lastDrawTime = null;
@@ -37,26 +37,26 @@ class Point{
 			this.x = x;
 			this.y = y;
 			//回弹
-			if(x > cvs.width - this.r/2){
-				x = cvs.width - this.r/2;
+			if(x > beijincvs.width - this.r/2){
+				x = beijincvs.width - this.r/2;
 				this.xSpeed = -this.xSpeed;
 			}else if(x < 0){
 				x = 0;
 				this.xSpeed = -this.xSpeed;
 			}
-			if(y > cvs.height - this.r/2){
-				y = cvs.height - this.r/2;
+			if(y > beijincvs.height - this.r/2){
+				y = beijincvs.height - this.r/2;
 				this.ySpeed = -this.ySpeed;
 			}else if(y < 0){
 				y = 0;
 				this.ySpeed = -this.ySpeed;
 			}
 		}
-		ctx.beginPath(); //开始设置绘画
+		beijinctx.beginPath(); //开始设置绘画
 		//绘制曲线 (x,y,半径,开始角度,结束角度,true/false 逆/顺)
-		ctx.arc(this.x,this.y,this.r,0,2*Math.PI); 
-		ctx.fillStyle = 'rgb(200,200,200)'; //填充颜色
-		ctx.fill(); //绘画 填充
+		beijinctx.arc(this.x,this.y,this.r,0,2*Math.PI); 
+		beijinctx.fillStyle = 'rgb(200,200,200)'; //填充颜色
+		beijinctx.fill(); //绘画 填充
 		this.lastDrawTime = Date.now();
 	}
 }
@@ -70,7 +70,7 @@ class Graph{
 		requestAnimationFrame(() => {
 			this.draw(); // 一直重新画点
 		})
-		ctx.clearRect(0,0,cvs.width,cvs.height);//清除一个矩形区域
+		beijinctx.clearRect(0,0,beijincvs.width,beijincvs.height);//清除一个矩形区域
 		for (let i = 0; i < this.point.length; i++) {
 			const p1 =  this.point[i];
 			p1.draw();
@@ -81,12 +81,12 @@ class Graph{
 				if(d > this.maxDis){
 					continue;
 				}
-				ctx.beginPath(); //开始设置绘画  设置 起点路径
-				ctx.moveTo(p1.x,p1.y); //开始坐标 以canvas左上角为原点
-				ctx.lineTo(p2.x,p2.y); //从上一个点到这个点路径 
-				ctx.closePath(); // 关闭路径 最后连接回起点
-				ctx.strokeStyle = `rgba(200,200,200,${1-d/this.maxDis})`; 
-				ctx.stroke();  //绘画 描边
+				beijinctx.beginPath(); //开始设置绘画  设置 起点路径
+				beijinctx.moveTo(p1.x,p1.y); //开始坐标 以canvas左上角为原点
+				beijinctx.lineTo(p2.x,p2.y); //从上一个点到这个点路径 
+				beijinctx.closePath(); // 关闭路径 最后连接回起点
+				beijinctx.strokeStyle = `rgba(200,200,200,${1-d/this.maxDis})`; 
+				beijinctx.stroke();  //绘画 描边
 			}
 		}
 	}
@@ -94,22 +94,22 @@ class Graph{
 const g = new Graph();
 g.draw();
 
-// ctx.beginPath(); //开始设置绘画  设置 起点路径
-// ctx.moveTo(80,40); //开始坐标 以canvas左上角为原点
-// ctx.lineTo(200,100); //从上一个点到这个点路径
-// ctx.lineTo(100,200);  //路径
-// ctx.lineTo(200,400); 
-// ctx.closePath(); // 关闭路径 最后连接回起点
-// ctx.strokeStyle = '#fff'; //路径(描边)颜色
-// ctx.stroke();  //绘画 描边
-// ctx.fillStyle = '#ff4faa'; //填充颜色
-// ctx.fill(); //绘画 填充
+// beijinctx.beginPath(); //开始设置绘画  设置 起点路径
+// beijinctx.moveTo(80,40); //开始坐标 以canvas左上角为原点
+// beijinctx.lineTo(200,100); //从上一个点到这个点路径
+// beijinctx.lineTo(100,200);  //路径
+// beijinctx.lineTo(200,400); 
+// beijinctx.closePath(); // 关闭路径 最后连接回起点
+// beijinctx.strokeStyle = '#fff'; //路径(描边)颜色
+// beijinctx.stroke();  //绘画 描边
+// beijinctx.fillStyle = '#ff4faa'; //填充颜色
+// beijinctx.fill(); //绘画 填充
 
-// ctx.beginPath(); //开始设置绘画
+// beijinctx.beginPath(); //开始设置绘画
 //绘制曲线 (x,y,半径,开始角度，结束角度,true/false 逆/顺)
-// ctx.arc(80,40,6,0,2*Math.PI); 
-// ctx.fillStyle = '#fff'; //填充颜色
-// ctx.fill(); //绘画 填充
+// beijinctx.arc(80,40,6,0,2*Math.PI); 
+// beijinctx.fillStyle = '#fff'; //填充颜色
+// beijinctx.fill(); //绘画 填充
 
 
  // ---- 座右铭字缓出效果 -----
@@ -158,3 +158,111 @@ g.draw();
         }
 
     }
+
+	// <!-- 画画布 -->
+const colorPicker = document.querySelector('input');
+const cvs = document.getElementById('huacanvas');
+const ctx = cvs.getContext('2d');
+function init2(){
+	//缩放倍率 devicePixelRatio
+	const w = 880,h=480;
+	cvs.width = w * devicePixelRatio;
+	cvs.height = h * devicePixelRatio;
+	cvs.style.width = w+'px';
+	cvs.style.height = h+'px';
+}
+init2();
+// 需要绘制的图形
+const shapes = [];
+class Rectangle{
+	constructor(color,startX,startY) {
+	    this.color = color;
+		this.startX = startX;
+		this.startY = startY;
+		this.endX = startX;
+		this.endY = startY;
+	}
+	get minX(){
+		return Math.min(this.startX,this.endX);
+	}
+	get maxX(){
+		return Math.max(this.startX,this.endX);
+	}
+	get minY(){
+		return Math.min(this.startY,this.endY);
+	}
+	get maxY(){
+		return Math.max(this.startY,this.endY);
+	}
+	draw(){
+		ctx.beginPath();
+		ctx.moveTo(this.minX * devicePixelRatio,this.minY * devicePixelRatio);
+		ctx.lineTo(this.maxX * devicePixelRatio,this.minY * devicePixelRatio);
+		ctx.lineTo(this.maxX * devicePixelRatio,this.maxY * devicePixelRatio);
+		ctx.lineTo(this.minX * devicePixelRatio,this.maxY * devicePixelRatio);
+		ctx.lineTo(this.minX * devicePixelRatio,this.minY * devicePixelRatio);
+		ctx.fillStyle = this.color;
+		ctx.fill();
+		ctx.strokeStyle = '#fff';
+		ctx.lineCap = 'square';
+		ctx.lineWidth = 3 * devicePixelRatio;
+		ctx.stroke();
+	}
+	
+	isInside(x,y){
+		return x >= this.minX && x <= this.maxX && y >=this.minY && y <= this.maxY;
+	}
+}
+cvs.onmousedown = (e) => {
+	const rect = cvs.getBoundingClientRect();
+	const clickX = e.clientX - rect.left;
+	const clickY = e.clientY - rect.top;
+	const shape = getShapes(clickX,clickY);
+	// console.log(shape);
+	if (shape) {
+		//拖
+		console.log(shape);
+		const {startX,startY,endX,endY} = shape;
+		window.onmousemove = (e) =>{
+			const disX = e.clientX - rect.left - clickX;
+			const disY = e.clientY - rect.top - clickY;
+			shape.startX = startX + disX;
+			shape.endX = endX + disX;
+			shape.startY = startY + disY;
+			shape.endY = endY + disY;
+		}
+	} else{
+		//新建
+		const shape = new Rectangle(colorPicker.value,clickX,clickY);
+		// console.log(colorPicker.value,clickX,clickY);
+		shapes.push(shape);
+		window.onmousemove = (e) =>{
+			shape.endX = e.clientX - rect.left;
+			shape.endY = e.clientY - rect.top;
+		}
+	}
+	window.onmouseup = () =>{
+		window.onmousemove = null;
+		window.onmouseup =   null;
+	}
+}
+
+function getShapes(x,y){
+	for (let i = shapes.length-1;i>=0;i--) {
+		const s = shapes[i];
+		if(s.isInside(x,y)){
+			return s;
+		}
+	}
+	return null;
+}
+
+function draw(){
+
+	requestAnimationFrame(draw);
+	ctx.clearRect(0,0,cvs.width,cvs.height);
+	for(const s of shapes){
+		s.draw();
+	}
+}
+draw();
